@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Sahay Voice Agent Design System - Wellness & Study Modes */
+
+@layer base {
+  :root {
+    /* Wellness Mode - Calming greens and earthy tones */
+    --wellness-primary: 150 30% 60%;
+    --wellness-primary-soft: 150 25% 75%;
+    --wellness-primary-light: 150 20% 90%;
+    --wellness-secondary: 40 15% 85%;
+    --wellness-accent: 160 20% 70%;
+    --wellness-background: 45 20% 96%;
+    --wellness-surface: 150 10% 98%;
+    --wellness-text: 150 15% 25%;
+    --wellness-text-soft: 150 10% 45%;
+    
+    /* Study Mode - Focused blues and clean greys */
+    --study-primary: 215 60% 65%;
+    --study-primary-soft: 215 40% 80%;
+    --study-primary-light: 215 30% 92%;
+    --study-secondary: 210 15% 88%;
+    --study-accent: 220 25% 75%;
+    --study-background: 210 20% 98%;
+    --study-surface: 0 0% 100%;
+    --study-text: 215 25% 20%;
+    --study-text-soft: 215 15% 40%;
+
+    /* Dynamic theme variables (switched by mode) */
+    --background: var(--wellness-background);
+    --foreground: var(--wellness-text);
+    --surface: var(--wellness-surface);
+    --surface-soft: var(--wellness-primary-light);
+    --text-soft: var(--wellness-text-soft);
+
+    --card: var(--surface);
+    --card-foreground: var(--foreground);
+
+    --primary: var(--wellness-primary);
+    --primary-soft: var(--wellness-primary-soft);
+    --primary-light: var(--wellness-primary-light);
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: var(--wellness-secondary);
+    --secondary-foreground: var(--foreground);
+
+    --accent: var(--wellness-accent);
+    --accent-foreground: var(--foreground);
+
+    --muted: var(--wellness-secondary);
+    --muted-foreground: var(--text-soft);
+
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: var(--wellness-primary-light);
+    --input: var(--surface);
+    --ring: var(--primary);
+
+    --radius: 0.5rem;
+
+    /* Gradients for aura effects */
+    --wellness-gradient: linear-gradient(135deg, hsl(var(--wellness-primary)), hsl(var(--wellness-accent)));
+    --study-gradient: linear-gradient(135deg, hsl(var(--study-primary)), hsl(var(--study-accent)));
+    --aura-gradient: var(--wellness-gradient);
+  }
+
+  /* Study Mode Theme Override */
+  [data-theme="study"] {
+    --background: var(--study-background);
+    --foreground: var(--study-text);
+    --surface: var(--study-surface);
+    --surface-soft: var(--study-primary-light);
+    --text-soft: var(--study-text-soft);
+
+    --primary: var(--study-primary);
+    --primary-soft: var(--study-primary-soft);
+    --primary-light: var(--study-primary-light);
+
+    --secondary: var(--study-secondary);
+    --accent: var(--study-accent);
+    --muted: var(--study-secondary);
+    --muted-foreground: var(--study-text-soft);
+    --border: var(--study-primary-light);
+    --aura-gradient: var(--study-gradient);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-hidden;
+  }
+}
+
+@layer components {
+  /* Aura ball animations */
+  .aura-pulse {
+    animation: aura-pulse 3s ease-in-out infinite;
+  }
+
+  .aura-listening {
+    animation: aura-listening 2s ease-in-out infinite;
+  }
+
+  .aura-speaking {
+    animation: aura-speaking 1.5s ease-in-out infinite;
+  }
+
+  .aura-thinking {
+    animation: aura-thinking 2s linear infinite;
+  }
+
+  /* Floating animation for status text */
+  .float-gentle {
+    animation: float-gentle 3s ease-in-out infinite;
+  }
+
+  /* Glow effects */
+  .glow-soft {
+    filter: drop-shadow(0 0 20px hsl(var(--primary) / 0.3));
+  }
+
+  .glow-strong {
+    filter: drop-shadow(0 0 40px hsl(var(--primary) / 0.5));
+  }
+}
+
+@layer utilities {
+  /* Keyframe animations */
+  @keyframes aura-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+  }
+
+  @keyframes aura-listening {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.02) rotate(1deg); }
+    75% { transform: scale(1.02) rotate(-1deg); }
+  }
+
+  @keyframes aura-speaking {
+    0%, 100% { transform: scale(1); }
+    20% { transform: scale(1.08); }
+    40% { transform: scale(1.03); }
+    60% { transform: scale(1.06); }
+    80% { transform: scale(1.02); }
+  }
+
+  @keyframes aura-thinking {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes float-gentle {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-4px); }
+  }
+
+  /* Fade animations */
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slide-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+
+  .animate-slide-in-up {
+    animation: slide-in-up 0.6s ease-out;
+  }
+}

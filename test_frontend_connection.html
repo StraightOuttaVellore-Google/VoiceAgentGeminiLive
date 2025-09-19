@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+</head>
+<body>
+    <h1>WebSocket Connection Test</h1>
+    <div id="status">Connecting...</div>
+    <div id="messages"></div>
+
+    <script>
+        const status = document.getElementById('status');
+        const messages = document.getElementById('messages');
+        
+        function addMessage(msg) {
+            const div = document.createElement('div');
+            div.textContent = new Date().toLocaleTimeString() + ': ' + msg;
+            messages.appendChild(div);
+        }
+        
+        const clientId = 'test_client_' + Date.now();
+        const wsUrl = `ws://localhost:8080/ws/${clientId}`;
+        
+        addMessage('Connecting to: ' + wsUrl);
+        
+        const ws = new WebSocket(wsUrl);
+        
+        ws.onopen = () => {
+            status.textContent = 'Connected!';
+            addMessage('WebSocket connected successfully');
+            
+            // Send test configuration
+            const config = {
+                type: 'config',
+                config: {
+                    systemPrompt: 'Test prompt',
+                    voice: 'Puck',
+                    allowInterruptions: false,
+                    mode: 'wellness'
+                }
+            };
+            
+            ws.send(JSON.stringify(config));
+            addMessage('Configuration sent');
+        };
+        
+        ws.onmessage = (event) => {
+            addMessage('Received: ' + event.data);
+        };
+        
+        ws.onerror = (error) => {
+            status.textContent = 'Error!';
+            addMessage('Error: ' + error);
+        };
+        
+        ws.onclose = (event) => {
+            status.textContent = 'Closed';
+            addMessage('Connection closed: ' + event.code + ' ' + event.reason);
+        };
+    </script>
+</body>
+</html>
