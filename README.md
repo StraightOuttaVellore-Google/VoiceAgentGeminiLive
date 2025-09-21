@@ -165,9 +165,151 @@ standalone/
 ### Debug Mode
 Enable debug logging by checking the browser console for detailed audio processing information.
 
+## 🔗 Related Projects
+
+This project is part of the larger Sahay ecosystem. Here are the other components:
+
+### Backend Services
+- **[Backend API](https://github.com/StraightOuttaVellore-Google/google-hackathon-backend)** - FastAPI backend with RESTful APIs and WebSocket support
+- **[MCP Server](https://github.com/StraightOuttaVellore-Google/sahay-mcp-server)** - Model Context Protocol server for study data management
+
+### Frontend Applications
+- **[Frontend App](https://github.com/StraightOuttaVellore-Google/google-hackathon-frontend)** - React frontend for the complete wellness platform
+- **[ADK Wellness Bots](https://github.com/StraightOuttaVellore-Google/adk-mas-healthcare)** - AI-powered wellness agents using Google's Agent Development Kit
+
+### Additional Features
+- **[Discord Fullstack](https://github.com/StraightOuttaVellore-Google/discord-fullstack)** - Neumorphic Discord-style chat application
+
+## 🧪 Testing
+
+### Running Tests
+```bash
+# Install test dependencies
+pip install pytest pytest-asyncio
+
+# Run backend tests
+cd backend
+pytest
+
+# Run frontend tests
+cd frontend
+npm test
+
+# Run integration tests
+python test_integration.py
+```
+
+### Test Coverage
+- Unit tests for voice processing
+- Integration tests for Gemini API
+- WebSocket connection testing
+- Audio quality validation
+- Error handling scenarios
+
+## 🚀 Deployment
+
+### Production Setup
+1. **Environment Configuration**:
+   ```bash
+   export GEMINI_API_KEY="your-gemini-api-key"
+   export NODE_ENV="production"
+   export PORT=3000
+   ```
+
+2. **Backend Deployment**:
+   ```bash
+   # Using Docker
+   docker build -t sahay-backend ./backend
+   docker run -p 8000:8000 sahay-backend
+   
+   # Using Python directly
+   cd backend
+   pip install -r requirements.txt
+   python main.py
+   ```
+
+3. **Frontend Deployment**:
+   ```bash
+   cd frontend
+   npm run build
+   # Deploy dist/ folder to your hosting service
+   ```
+
+4. **Cloud Deployment**:
+   - **Backend**: Google Cloud Run, AWS Lambda, or Azure Functions
+   - **Frontend**: Vercel, Netlify, or AWS S3 + CloudFront
+   - **Database**: Firebase Firestore or Supabase
+
+## 📊 Performance
+
+### Optimization Features
+- **Voice Activity Detection**: Efficient speech detection with Silero VAD
+- **Audio Queue Management**: Prevents overlapping audio responses
+- **Real-time Processing**: Optimized for low-latency voice interactions
+- **Memory Management**: Efficient audio buffer handling
+
+### Monitoring
+- **Audio Quality Metrics**: Track audio processing performance
+- **API Response Times**: Monitor Gemini API latency
+- **Error Rates**: Track and alert on processing errors
+- **User Engagement**: Monitor voice journaling usage patterns
+
+## 🔒 Security & Privacy
+
+### Privacy Features
+- **No Audio Storage**: All voice data is processed in real-time and never stored
+- **Local Processing**: Voice activity detection runs locally on your device
+- **Secure Communication**: All data transmission is encrypted
+- **No Personal Data**: No personal information is collected or stored
+
+### Security Measures
+- **API Key Protection**: Secure handling of Gemini API keys
+- **HTTPS Only**: All communications use secure protocols
+- **Input Validation**: Comprehensive validation of all user inputs
+- **Rate Limiting**: Protection against abuse and overuse
+
+## 🛠️ Development
+
+### Project Structure
+```
+sahay-aura-glow/
+├── backend/              # FastAPI Python backend
+│   ├── main.py          # Main application entry point
+│   ├── requirements.txt # Python dependencies
+│   └── venv/           # Virtual environment
+├── frontend/            # React TypeScript frontend
+│   ├── src/            # Source code
+│   ├── public/         # Static assets
+│   ├── package.json    # Node.js dependencies
+│   └── dist/           # Build output
+├── standalone/          # Standalone Python application
+│   ├── standalone.py   # Main standalone app
+│   ├── awaaz_connection.py # Gemini API connection
+│   └── voice_activity_detector.py # VAD implementation
+└── tests/              # Test files
+```
+
+### Development Guidelines
+- Follow TypeScript best practices for frontend
+- Use Python type hints for backend code
+- Write comprehensive tests for new features
+- Document all API endpoints and functions
+- Follow accessibility guidelines for UI components
+
 ## 🤝 Contributing
 
-We welcome contributions! Please feel free to submit issues and pull requests.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Contribution Guidelines
+- Follow the existing code style
+- Add tests for new features
+- Update documentation as needed
+- Ensure all tests pass before submitting
+- Be respectful and constructive in discussions
 
 ## 📄 License
 
@@ -177,7 +319,32 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Google Gemini Live API for voice processing capabilities
 - Silero VAD for voice activity detection
+- React and TypeScript communities
+- FastAPI and Python communities
 - The open-source community for various libraries and tools
+
+## 📞 Support
+
+For support and questions:
+1. Check the [documentation](https://github.com/StraightOuttaVellore-Google/sahay-aura-glow/wiki)
+2. Open an issue in the GitHub repository
+3. Contact the development team
+
+## ⚠️ Important Disclaimer
+
+**This application is designed for general wellness support and should not replace professional mental health care. Always consult with qualified healthcare providers for serious mental health concerns.**
+
+### When to Seek Professional Help
+- Suicidal thoughts or self-harm
+- Severe depression or anxiety
+- Substance abuse issues
+- Psychotic symptoms
+- Any mental health crisis
+
+### Crisis Resources
+- **National Suicide Prevention Lifeline**: 988
+- **Crisis Text Line**: Text HOME to 741741
+- **Emergency Services**: 911
 
 ---
 
