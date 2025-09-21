@@ -545,12 +545,13 @@ Remember: You're a listening companion, not a therapist. Your job is to help the
                     logger.error("WebSocket is not available")
                     return
                     
-                async for msg in awaaz.ws:
-                    if not awaaz.running:
-                        logger.info("Awaaz stopped, breaking receive loop")
-                        break
-                        
-                    try:
+                try:
+                    async for msg in awaaz.ws:
+                        if not awaaz.running:
+                            logger.info("Awaaz stopped, breaking receive loop")
+                            break
+                            
+                        try:
                         message_count += 1
                         logger.debug(f"Raw message from Gemini: {len(msg)} chars")
                         logger.debug(f"Message preview: {msg[:500]}...")
