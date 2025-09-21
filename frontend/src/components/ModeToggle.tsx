@@ -23,7 +23,7 @@ export const ModeToggle = ({ mode, onModeChange }: ModeToggleProps) => {
         `}
       >
         <Leaf className="w-3 h-3" />
-        <span className="text-xs font-medium">Wellness</span>
+        <span className="text-xs font-medium">Wellness Journal</span>
       </Button>
       
       <Button
@@ -39,7 +39,7 @@ export const ModeToggle = ({ mode, onModeChange }: ModeToggleProps) => {
         `}
       >
         <BookOpen className="w-3 h-3" />
-        <span className="text-xs font-medium">Study</span>
+        <span className="text-xs font-medium">Study Journal</span>
       </Button>
     </div>
   );

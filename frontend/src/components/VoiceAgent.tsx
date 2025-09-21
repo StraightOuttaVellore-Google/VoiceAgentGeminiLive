@@ -149,13 +149,11 @@ export const VoiceAgent = () => {
 
       // Create configuration based on mode
       const config: VoiceConfig = {
-        systemPrompt: mode === 'wellness' 
-          ? "You are Awaaz, an empathetic AI mentor focused on wellness and mindfulness. Your goal is to provide a safe space for users to talk about their feelings and wellbeing. Use a supportive and gentle tone. You are multilingual and can converse in English and Hindi."
-          : "You are Awaaz, an AI study companion focused on learning and productivity. Your goal is to help users with their studies, provide educational support, and maintain focus. Use an encouraging and helpful tone. You are multilingual and can converse in English and Hindi.",
+        systemPrompt: "", // System prompts are now handled by the backend
         voice: "Puck",
-        allowInterruptions: false,
+        allowInterruptions: true,
         mode: mode,
-        vad_enabled: false // Disable VAD for testing
+        vad_enabled: true
       };
 
       await voiceServiceRef.current.connect(config);
@@ -166,8 +164,8 @@ export const VoiceAgent = () => {
       // Start continuous recording
       audioServiceRef.current.startRecording();
 
-      toast(`Connected to Sahay in ${mode} mode`, {
-        description: `Ready to assist with ${mode === 'wellness' ? 'mindfulness and wellbeing' : 'learning and focus'}`
+      toast(`Connected to Sahay ${mode === 'wellness' ? 'Wellness Journal' : 'Study Journal'}`, {
+        description: `Ready to listen and help you process your ${mode === 'wellness' ? 'daily experiences and emotions' : 'academic experiences and challenges'}`
       });
 
     } catch (error) {
@@ -206,16 +204,16 @@ export const VoiceAgent = () => {
 
   const getGreeting = () => {
     if (mode === "wellness") {
-      return "Hi there! I'm Sahay, here to support your wellness journey. How are you feeling today?";
+      return "Hi there! I'm Sahay, your wellness journal companion. I'm here to listen and help you process your daily experiences. How are you feeling today?";
     }
-    return "Hello! I'm Sahay, ready to help you focus and learn. What would you like to study today?";
+    return "Hello! I'm Sahay, your study journal companion. I'm here to listen and help you reflect on your academic journey. What's on your mind about your studies?";
   };
 
   const getModeDescription = () => {
     if (mode === "wellness") {
-      return "A peaceful space for mindfulness, reflection, and emotional wellbeing";
+      return "A safe space for voice journalling about your daily experiences, emotions, and wellbeing. Share your thoughts and feelings as I listen and help you process them.";
     }
-    return "A focused environment for learning, concentration, and productivity";
+    return "A supportive space for voice journalling about your academic experiences, challenges, and learning journey. Reflect on your studies as I listen and help you understand your patterns.";
   };
 
   return (
@@ -334,7 +332,7 @@ export const VoiceAgent = () => {
       {isConnected && (
         <div className="absolute bottom-6 text-center">
           <p className="text-xs text-text-soft">
-            {mode === "wellness" ? "🌱 Wellness Mode" : "📚 Study Mode"}
+            {mode === "wellness" ? "🌱 Wellness Journal" : "📚 Study Journal"}
           </p>
           {/* Debug Info */}
           <div className="mt-2 text-xs text-text-soft space-y-1">
